@@ -1,1 +1,0 @@
-g++ -Wall main.cpp Portrait.cpp Portrait.hpp -lm -lGL -lglut -o prog
