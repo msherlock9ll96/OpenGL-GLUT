@@ -18,7 +18,12 @@ void myResizeFunc(int width, int height);
 	GLOBAL VARIABLES
 *************************/
 // Portrait Object
-Portrait* myPortrait;
+Portrait* myPortrait1;
+Portrait* myPortrait2;
+Portrait* myPortrait3;
+Portrait* myPortrait4;
+Portrait* myPortrait5;
+Portrait* myPortrait6;
 
 // Initial Window Position
 const int 	INIT_WIN_X = 100,
@@ -77,6 +82,8 @@ void myKeyboardHandler(unsigned char c, int x, int y)
 
 void myDisplayFunc(void)
 {
+	// Set background color
+	glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 	// Clear the buffer to write to
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -91,24 +98,13 @@ void myDisplayFunc(void)
 	*************************/
 	if (initDone)
 	{
-		// glColor3f(1.f, 1.f, 0.f);
-		// glBegin(GL_LINES);
-		// 	glVertex2f(0.f, 0.f);
-		// 	glVertex2f(1.f, 1.f);
-			
-		// glEnd();
 
-
-		// glTranslatef(-0.75f,0.f, 0.f);
-		// glColor3f(0.f, 1.f,0.f);
-		// glBegin(GL_TRIANGLE_FAN);
-		// 	glVertex2f(0.0f, 0.0f);
-		// 	glVertex2f(0.5f, 0.0f);
-		// 	glVertex2f(0.5f, 0.5f);
-		// 	glVertex2f(0.0f, 0.5f);
-		// glEnd();
-
-		myPortrait->draw();
+		myPortrait1->draw();
+		myPortrait2->draw();
+		myPortrait3->draw();
+		myPortrait4->draw();
+		myPortrait5->draw();
+		myPortrait6->draw();
 	}
 
 
@@ -172,7 +168,22 @@ int main(int argc, char** argv)
 
 	// Values for portrait objects
 	float xy[2] = {0.f,0.f};
-	myPortrait = new Portrait(xy);
+	myPortrait1 = new Portrait(xy);
+	xy[0] = 5.f;
+	xy[1] = 5.f;
+	myPortrait2 = new Portrait(xy);
+	xy[0] = -5.f;
+	xy[1] = 5.f;
+	myPortrait3 = new Portrait(xy);
+	xy[0] = -5.f;
+	xy[1] = -5.f;
+	myPortrait4 = new Portrait(xy);
+	xy[0] = 5.f;
+	xy[1] = -5.f;
+	myPortrait5 = new Portrait(xy);
+	xy[0] = 0.f;
+	xy[1] = -6.f;
+	myPortrait6 = new Portrait(xy);
 	
 
 
