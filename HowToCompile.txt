@@ -1,1 +1,1 @@
-g++ -Wall simpleGLUT.cpp glPlatform.h -lm -lGL -lglut -o prog
+g++ -Wall main.cpp Portrait.cpp Portrait.hpp -lm -lGL -lglut -o prog
