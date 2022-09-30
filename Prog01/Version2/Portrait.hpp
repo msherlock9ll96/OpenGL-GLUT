@@ -22,10 +22,9 @@ class Portrait {
 
 		// Constructors
 		// Normal
-		Portrait(float theXy[2]);
+		Portrait();
 
-		// Default constructor and deconstructor
-		Portrait(void) = delete;
+		// Default deconstructor
 		~Portrait(void) = default;
 
 		// Unused Copy and Move constructors
@@ -36,20 +35,22 @@ class Portrait {
 
 		// Setter Methods
 		void setScale(float xScale, float yScale);
+		void setCoords(float xVal, float yVal);
 		void setRotation(float degrees);
 		void setHairColor(float R, float G, float B);
 		void setSkinColor(float R, float G, float B);
 		void setGlassesColor(float R, float G, float B);
 		void setEyeColor(float R, float G, float B);
+		void setRandomValues();
 
 		// Drawing Methods
 
-		void draw(void) const;
-		void drawHead(void) const;
-		void drawHair(void) const;
-		void drawFace(void) const;
-		void drawAccessories(void) const;
-		void drawEllipse(float x, float y) const;
+		void draw(void);
+		void drawHead(void);
+		void drawHair(void);
+		void drawFace(void);
+		void drawAccessories(void);
+		void drawEllipse(float x, float y);
 
 };
 
