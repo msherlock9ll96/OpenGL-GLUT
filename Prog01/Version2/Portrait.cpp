@@ -1,23 +1,66 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <math.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include "Portrait.hpp"
 
+// Random Number Generation Functions
 
-
-Portrait::Portrait(float theXy[])
+float randRGB()
 {
-	// Setting the center coordinated to the specified location
-	xy[0] = theXy[0];
-	xy[1] = theXy[1];
+	float r = 0 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(255-0)));
+	return r;
+}
+
+float randCoords()
+{
+	float r = 0 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(20-0)));
+	return r-10;
+}
+
+float randScale()
+{
+	float r = 0 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(2-0.2)));
+	return r;
+}
+
+float randDegree()
+{
+	float r = 0 + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/(360-0)));
+	return r;	
+}
+
+
+Portrait::Portrait()
+{
+	// seed random number generation
+	srand(static_cast <unsigned> (time(0)));
+}
+
+void Portrait::setRandomValues()
+{
+	// Setting random values for draw
+	setScale(randScale(), randScale());
+	setCoords(randCoords()*1.5f, randCoords());
+	setRotation(randDegree());
+	setHairColor(randRGB(), randRGB(), randRGB());
+	setSkinColor(randRGB(), randRGB(), randRGB());
+	setGlassesColor(randRGB(), randRGB(), randRGB());
+	setEyeColor(randRGB(), randRGB(), randRGB());
 }
 
 // Main draw method
-void Portrait::draw(void) const
+void Portrait::draw(void) 
 {
+
 	// Push object drawing onto stack
 	glPushMatrix();
+
+	// Set values for the object to be drawn
+	setRandomValues();
+
 
 	// Set any parameters
 	glTranslatef(xy[0],xy[1],0.f);
@@ -44,6 +87,12 @@ void Portrait::setScale(float xScale, float yScale)
 {
 	scale[0] = xScale;
 	scale[1] = yScale;
+}
+
+void Portrait::setCoords(float xVal, float yVal)
+{
+	xy[0] = xVal;
+	xy[1] = yVal;
 }
 
 void Portrait::setRotation(float degrees)
@@ -79,7 +128,7 @@ void Portrait::setGlassesColor(float R, float G, float B)
 	this->glassesColor[2] = B/255.f;
 }
 
-void Portrait::drawHead(void) const
+void Portrait::drawHead(void)
 {
 	// Set Color
 	glColor3fv(skinColor);
@@ -118,7 +167,7 @@ void Portrait::drawHead(void) const
 	glEnd();
 }
 
-void Portrait::drawHair(void) const
+void Portrait::drawHair(void)
 {
 	// Set Color
 	glColor3fv(hairColor);
@@ -218,7 +267,7 @@ void Portrait::drawHair(void) const
 	glEnd();
 }
 
-void Portrait::drawFace(void) const
+void Portrait::drawFace(void)
 {
 	// Adding eyes
 	glPushMatrix();
@@ -269,7 +318,7 @@ void Portrait::drawFace(void) const
 
 }
 
-void Portrait::drawAccessories(void) const
+void Portrait::drawAccessories(void)
 {
 
 	// Drawing glasses
@@ -324,7 +373,7 @@ void Portrait::drawAccessories(void) const
 
 }
 
-void Portrait::drawEllipse(float x, float y) const
+void Portrait::drawEllipse(float x, float y)
 {
 	glBegin(GL_POLYGON);
 	for (int i = 0 ; i < 180 ; i++)

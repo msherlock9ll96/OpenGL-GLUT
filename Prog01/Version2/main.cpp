@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include "Portrait.hpp"
@@ -18,11 +20,6 @@ void myResizeFunc(int width, int height);
 *************************/
 // Portrait Object
 Portrait* myPortrait1;
-Portrait* myPortrait2;
-Portrait* myPortrait3;
-Portrait* myPortrait4;
-Portrait* myPortrait5;
-Portrait* myPortrait6;
 
 // Initial Window Position
 const int 	INIT_WIN_X = 100,
@@ -101,27 +98,11 @@ void myDisplayFunc(void)
 	*************************/
 	if (initDone)
 	{
-		myPortrait1->setScale(2,2);
-		myPortrait1->draw();
-
-		myPortrait2->setRotation(80);
-		myPortrait2->setScale(2,0.5);
-		myPortrait2->draw();
-
-		myPortrait3->setHairColor(0.f,255.f,0.f);
-		myPortrait3->setGlassesColor(255.f, 0.f, 0.f);
-		myPortrait3->draw();
-
-		myPortrait4->setEyeColor(255.f, 0.f, 0.f);
-		myPortrait4->setRotation(-45.f);
-		myPortrait4->draw();
-
-		myPortrait5->setScale(2.f, 0.5f);
-		myPortrait5->setHairColor(255,192,203);
-		myPortrait5->draw();
-
-		myPortrait6->setScale(0.4f,0.4f);
-		myPortrait6->draw();
+		myPortrait1->setScale(0.5f, 0.5f);
+		for (int i = 0 ; i < 25 ; i++)
+		{
+			myPortrait1->draw();
+		}
 	}
 
 
@@ -183,24 +164,8 @@ int main(int argc, char** argv)
 	glutReshapeFunc(myResizeFunc);
 
 
-	// Values for portrait objects
-	float xy[2] = {0.f,0.f};
-	myPortrait1 = new Portrait(xy);
-	xy[0] = 7.f;
-	xy[1] = 5.f;
-	myPortrait2 = new Portrait(xy);
-	xy[0] = -7.f;
-	xy[1] = 5.f;
-	myPortrait3 = new Portrait(xy);
-	xy[0] = -8.f;
-	xy[1] = -5.f;
-	myPortrait4 = new Portrait(xy);
-	xy[0] = 9.f;
-	xy[1] = -3.f;
-	myPortrait5 = new Portrait(xy);
-	xy[0] = 4.f;
-	xy[1] = -6.f;
-	myPortrait6 = new Portrait(xy);
+	// Values for portrait object
+	myPortrait1 = new Portrait();
 	
 
 
